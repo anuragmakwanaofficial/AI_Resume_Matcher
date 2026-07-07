@@ -16,10 +16,10 @@ class Settings(BaseSettings):
     DEBUG: bool = False
 
     # Database
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/ai_resume_matcher"
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/ai_resume_matcher")
 
     # JWT Authentication
-    SECRET_KEY: str = "your-super-secret-key-change-in-production"
+    SECRET_KEY: str = os.getenv("JWT_SECRET", os.getenv("SECRET_KEY", "your-super-secret-key-change-in-production"))
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
 
@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000"]
 
     # LLM / AI Settings
-    HF_API_KEY: str = ""
+    HF_API_KEY: str = os.getenv("HUGGINGFACE_API_KEY", os.getenv("HF_API_KEY", ""))
     HF_MODEL_ID: str = "mistralai/Mistral-7B-Instruct-v0.3"
     LLM_BACKEND: str = "api"
     LLM_MAX_NEW_TOKENS: int = 800
