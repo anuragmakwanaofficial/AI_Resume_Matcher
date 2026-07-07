@@ -25,8 +25,11 @@ from .routers.admin import router as admin_router
 from .routers.batch import router as batch_router
 from . import models  # Import to register all models in Base.metadata
 
-# Auto-create DB tables
-Base.metadata.create_all(bind=engine)
+# Auto-create DB tables (gracefully handle connection errors)
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception as e:
+    logging.warning(f"Could not create DB tables on startup: {e}")
 
 app = FastAPI(
     title=settings.APP_NAME,
