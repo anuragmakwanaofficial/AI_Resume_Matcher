@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Global Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9ff;
+  color: #0b1c30;
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Material Symbols ─────────────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+}
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ─── Glass Card ───────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 198, 205, 0.6);
+}
+
+/* ─── Hero Gradient ────────────────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e5eeff 60%, #dce9ff 100%);
+}
+
+/* ─── Score Ring Animation ─────────────────────────────────── */
+@keyframes ring-progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.score-ring-fill {
+  animation: ring-progress 1.2s ease-out forwards;
+}
+
+/* ─── Skill Tag ────────────────────────────────────────────── */
+.skill-tag-matched {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background-color: #e5eeff;
+  border: 1px solid rgba(198, 198, 205, 0.3);
+  font-size: 12px;
+  font-weight: 600;
+  color: #0b1c30;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s, background-color 0.2s;
+  cursor: default;
+}
+.skill-tag-matched:hover {
+  border-color: #0058be;
+  background-color: #d8e2ff;
+}
+
+.skill-tag-missing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background-color: #eff4ff;
+  border: 1.5px dashed #c6c6cd;
+  font-size: 12px;
+  font-weight: 600;
+  color: #45464d;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s;
+  cursor: help;
+}
+.skill-tag-missing:hover {
+  border-color: #76777d;
+}
+
+/* ─── Score Color Classes ──────────────────────────────────── */
+.score-excellent { color: #15803d; }
+.score-good      { color: #0058be; }
+.score-fair      { color: #b45309; }
+.score-poor      { color: #ba1a1a; }
+
+.score-ring-excellent { stroke: #16a34a; }
+.score-ring-good      { stroke: #0058be; }
+.score-ring-fair      { stroke: #d97706; }
+.score-ring-poor      { stroke: #ba1a1a; }
+
+/* ─── Card Active State ────────────────────────────────────── */
+.input-card-active {
+  border-color: #0058be;
+  box-shadow: 0 0 0 2px rgba(0, 88, 190, 0.15);
+}
+
+/* ─── Loading Spinner ──────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loading-spinner {
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+}
+
+/* ─── Fade In Animation ────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* ─── Pulse for AI Loading ─────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+.ai-pulse {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* ─── Scrollbar Styling ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f8f9ff; }
+::-webkit-scrollbar-thumb { background: #c6c6cd; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #76777d; }
+
+/* ─── Dark Mode Overrides ──────────────────────────────────── */
+html.dark body {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+html.dark .bg-surface,
+html.dark .bg-surface-bright,
+html.dark .bg-background {
+  background-color: #0f172a;
+}
+
+html.dark .bg-surface-container-lowest,
+html.dark .bg-surface-container-low,
+html.dark .bg-surface-container,
+html.dark .bg-surface-container-high,
+html.dark .bg-surface-container-highest {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+html.dark .text-on-surface,
+html.dark .text-on-background {
+  color: #f8fafc;
+}
+
+html.dark .text-on-surface-variant {
+  color: #94a3b8;
+}
+
+html.dark .border-outline-variant,
+html.dark .border-outline {
+  border-color: #334155;
+}
+
+html.dark .glass-card {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(51, 65, 85, 0.6);
+}
+
+html.dark .hero-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+}
